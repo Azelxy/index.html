@@ -7,34 +7,135 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap');
 
-body { 
-    font-family: 'Roboto', sans-serif; 
-    margin: 0; 
-    padding: 20px; 
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: #2c3e50;
-}
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #2c3e50;
+        }
 
-.login, .dashboard { 
-    max-width: 900px; 
-    margin: 20px auto; 
-    padding: 30px; 
-    background: #ffffff; 
-    border-radius: 15px; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-}
+        .login, .dashboard { 
+            max-width: 900px; 
+            margin: 20px auto; 
+            padding: 30px; 
+            background: #ffffff; 
+            border-radius: 15px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
 
-h2 { 
-    font-family: 'Montserrat', sans-serif; 
-    color: #2c3e50; 
-    border-bottom: 4px solid #f39c12; 
-    padding-bottom: 15px; 
-    font-size: 28px;
-}
+        h2 { 
+            font-family: 'Montserrat', sans-serif; 
+            color: #2c3e50; 
+            border-bottom: 4px solid #f39c12; 
+            padding-bottom: 15px; 
+            font-size: 28px;
+        }
 
-button { 
-    background: linear-gradient(45deg, #f39c12, #e67e22); 
-    color: white; 
+        button { 
+            background: linear-gradient(45deg, #f39c12, #e67e22); 
+            color: white; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 25px; 
+            cursor: pointer; 
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        button:hover { background: linear-gradient(45deg, #e67e22, #d68910); }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+            background: #f8f9fa; 
+            border-radius: 12px; 
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        th { 
+            background: linear-gradient(45deg, #2c3e50, #34495e); 
+            color: white; 
+            padding: 15px; 
+            font-weight: 500;
+        }
+
+        td { padding: 15px; border-bottom: 1px solid #ecf0f1; }
+
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border: 2px solid #ecf0f1; 
+            border-radius: 8px; 
+            font-size: 16px;
+        }
+
+        input:focus { border-color: #f39c12; outline: none; }
+    </style>
+</head>
+<body>
+    <div id="loginForm" class="login">
+        <h2>Student Login</h2>
+        <input type="text" id="username" placeholder="Student ID">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <h2>Welcome, Student!</h2>
+        <button onclick="logout()">Logout</button>
+        <h3>Grades</h3>
+        <table>
+            <tr><th>Subject</th><th>Grade</th></tr>
+            <tr><td>Math</td><td>A</td></tr>
+            <tr><td>English</td><td>A</td></tr>
+            <tr><td>Computer</td><td>A</td></tr>
+            <tr><td>Science</td><td>B+</td></tr>
+        </table>
+        <h3>Schedule</h3>
+        <ul>
+            <li>Mon 9AM: Math</li>
+            <li>Tue 10AM: Science</li>
+        </ul>
+    </div>
+
+    <script>
+        let currentUser = '';
+        function login() {
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            
+            if (user === 'student123' && pass === 'pass123') {
+                currentUser = 'student';
+                showDashboard('student');
+            } else if (user === 'admin' && pass === 'school2026') {
+                currentUser = 'admin';
+                showDashboard('admin');
+            } else {
+                alert('Invalid: Use student123/pass123 or admin/school2026');
+            }
+        }
+
+        function showDashboard(role) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            const title = document.querySelector('h2');
+            if (role === 'admin') {
+                title.innerHTML = 'Admin Dashboard - School Management';
+            } else {
+                title.innerHTML = 'Welcome back, students!';
+            }
+        }
+
+        function logout() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+    </script>
+</body>
+</html>    color: white; 
     padding: 12px 24px; 
     border: none; 
     border-radius: 25px; 
