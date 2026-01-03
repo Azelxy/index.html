@@ -101,21 +101,31 @@ input:focus { border-color: #f39c12; outline: none; }
         </ul>
     </div>
 
-    <script>
-        function login() {
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            if (user === 'student123' && pass === 'pass123') {  // Demo creds
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
-            } else {
-                alert('Invalid credentials');
-            }
-        }
-        function logout() {
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('dashboard').style.display = 'none';
-        }
-    </script>
+    <let currentUser = '';
+function login() {
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+    
+    if (user === 'student123' && pass === 'pass123') {
+        currentUser = 'student';
+        showDashboard('student');
+    } else if (user === 'admin' && pass === 'school2026') {
+        currentUser = 'admin';
+        showDashboard('admin');
+    } else {
+        alert('Invalid credentials');
+    }
+}
+
+function showDashboard(role) {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    
+    if (role === 'admin') {
+        document.querySelector('h2').innerHTML = 'Admin Dashboard - School Management';
+        // Add admin table with all students
+        document.querySelector('h3').innerHTML = 'All Students Grades';
+    }
+}
 </body>
 </html>
