@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
+        .login { max-width: 400px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; }
+        .dashboard { display: none; max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="loginForm" class="login">
+        <h2>Student Login</h2>
+        <input type="text" id="username" placeholder="Student ID" style="width: 100%; padding: 10px; margin: 10px 0;">
+        <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 10px; margin: 10px 0;">
+        <button onclick="login()">Login</button>
+    </div>
+    <div id="dashboard" class="dashboard">
+        <h2>Welcome, Student!</h2>
+        <button onclick="logout()">Logout</button>
+        <h3>Grades</h3>
+        <table>
+            <tr><th>Course</th><th>Grade</th></tr>
+            <tr><td>Math</td><td>A</td></tr>
+            <tr><td>Science</td><td>B+</td></tr>
+        </table>
+        <h3>Schedule</h3>
+        <ul>
+            <li>Mon 9AM: Math</li>
+            <li>Tue 10AM: Science</li>
+        </ul>
+    </div>
+
+    <script>
+        function login() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            if (user === 'student123' && pass === 'pass123') {  // Demo creds
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+        function logout() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
